@@ -1,18 +1,26 @@
---
--- Drop Tables
---
+-- Pink hamburger file is a migration file
 
-SET foreign_key_checks = 0;
-DROP TABLE if exists students;
-SET foreign_key_checks = 1;
+DROP TABLE IF EXISTS productions;
+DROP TABLE IF EXISTS purchases;
 
---
--- Create Tables
---
+CREATE TABLE `productions`(
+    `id` INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `title` VARCHAR(255) NOT NULL,
+    `budget` INT NOT NULL
+);
+CREATE TABLE `purchases`(
+    `id` INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `production_id` INT NOT NULL COMMENT 'For which show or production did you make this purchase?',
+    `date` DATE NOT NULL COMMENT 'When did you make this purchase?',
+    `order_num` INT NOT NULL COMMENT 'What are the last four digits of the order number?',
+    `vender` VARCHAR(255) NOT NULL COMMENT 'From what company or store did you buy these things?',
+    `items` INT NOT NULL,
+    `description` VARCHAR(255) NULL COMMENT 'What specific item(s) were purchased in this transaction?',
+    `payment_type` VARCHAR(255) NOT NULL COMMENT 'How did you pay for these things?',
+    `total` DECIMAL(8, 2) NOT NULL COMMENT 'What is the total cost of this ENTIRE PURCHASE as shown on the receipt?',
+    `reimb_submitted` BOOLEAN NOT NULL,
+    `reimb_received` BOOLEAN NOT NULL
+);
 
-CREATE TABLE students(
-    id INT NOT NULL AUTO_INCREMENT, 
-    firstname VARCHAR(40) not null, 
-    lastname VARCHAR(40) not null, 
-    PRIMARY KEY (id)
-    );
+
+
