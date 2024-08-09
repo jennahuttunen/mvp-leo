@@ -51,7 +51,7 @@ const AddProduction = ({ getProductions }) => {
   };
 
   return (
-    <div>
+    <div id="add-production">
       <h2>Add Production</h2>
       <form onSubmit={handleSubmit}>
         <InputGroup className="mb-3">

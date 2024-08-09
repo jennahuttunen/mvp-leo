@@ -4,7 +4,7 @@ import Card from "react-bootstrap/Card";
 
 const ProductionGrid = ({ productions }) => {
   return (
-    <section>
+    <section id="production-grid">
       <h2>Productions</h2>
       <div className="productions-grid">
         {productions.map((prod) => {

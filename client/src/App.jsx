@@ -8,7 +8,6 @@ import Purchases from "./components/Purchases";
 function App() {
   return (
     <>
-      <h1>Expense Tracker</h1>
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/purchases" element={<Purchases />} />
