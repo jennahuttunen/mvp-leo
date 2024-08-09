@@ -3,7 +3,7 @@ import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 
 const AddProduction = ({ getProductions }) => {
-  // Initialize useState with an empty object
+  // Initialize useState with an empty productions object
   const EmptyForm = {
     title: "",
     description: "",

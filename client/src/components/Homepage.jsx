@@ -13,9 +13,9 @@ const Homepage = () => {
 
   const [productions, setProductions] = useState([]);
   // Productions is the array fetched from the db which will replace []
-
-  // Broken???
-  const getProductions = (req, res) => {
+  /// Every 500 means a server side error - first check the terminal running the backend
+  // Broken??? "res is not defined", "status is not defined"
+  const getProductions = () => {
     fetch("/api/productions")
       .then((res) => res.json()) // Wait to see if the server can satisfy request
       .then((json) => {
@@ -23,7 +23,7 @@ const Homepage = () => {
         setProductions(json);
       })
       .catch((error) => {
-        res.status(500).send({ error: error.message });
+        console.log(error);
       });
   };
 
@@ -32,7 +32,7 @@ const Homepage = () => {
   }, []); // How do I make the useEffect refetch every time a production is added?
 
   return (
-    <div className="container-fluid">
+    <div id="homepage" className="container-fluid">
       <GlobalNavbar links={links} />
       <h1>Expense Tracker</h1>
       <h1>Home Page</h1>
