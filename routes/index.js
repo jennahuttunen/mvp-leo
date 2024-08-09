@@ -7,6 +7,15 @@ router.get("/", function (req, res, next) {
   res.send({ title: "Hello there!" });
 });
 
+// Get all shows (productions)
+router.get("/productions", function (req, res) {
+  db("SELECT * FROM productions;")
+    .then((results) => {
+      res.send(results.data);
+    })
+    .catch((err) => res.status(500).send(err));
+});
+
 // Get all purchases
 router.get("/purchases", function (req, res) {
   db("SELECT * FROM purchases;")
@@ -163,13 +172,15 @@ router.post("/purchases", async function (req, res) {
 // POST a new production
 router.post("/productions", async function (req, res) {
   try {
-    let { title, budget } = req.body;
+    let { title, description, budget } = req.body;
     let sql = `
     INSERT INTO productions (
       title,
+      description,
       budget)
     VALUES(
       '${title}',
+      '${description}',
       ${budget}
     )
     `;

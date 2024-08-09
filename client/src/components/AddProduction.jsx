@@ -2,15 +2,36 @@ import { useState } from "react";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 
-const AddProduction = (props) => {
+const AddProduction = ({ getProductions }) => {
   // Initialize useState with an empty object
   const EmptyForm = {
     title: "",
+    description: "",
     budget: 0,
   };
 
   // Create piece of state to change production data
   const [production, setProduction] = useState(EmptyForm);
+
+  const handleAddProduction = async () => {
+    try {
+      let response = await fetch("/api/productions", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(production),
+      });
+
+      if (response.ok) {
+        getProductions();
+      } else {
+        alert(`Server error: ${response.status} ${response.statusText}`);
+      }
+    } catch (error) {
+      alert(`Network error: ${error.message}`);
+    }
+  };
 
   // You'll need a handleChange
   const handleInputChange = (e) => {
@@ -25,7 +46,7 @@ const AddProduction = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     // pass data back up to the parent
-    props.addProduction(production);
+    handleAddProduction(production);
     setProduction((production) => EmptyForm);
   };
 
@@ -44,6 +65,18 @@ const AddProduction = (props) => {
             value={production.title}
             onChange={(e) => handleInputChange(e)}
             required
+          />
+        </InputGroup>
+        <InputGroup className="mb-3">
+          <InputGroup.Text id="inputGroup-sizing-default">
+            Description
+          </InputGroup.Text>
+          <Form.Control
+            aria-label="Description"
+            aria-describedby="inputGroup-sizing-default"
+            name="description"
+            value={production.description}
+            onChange={(e) => handleInputChange(e)}
           />
         </InputGroup>
         <InputGroup className="mb-3">
