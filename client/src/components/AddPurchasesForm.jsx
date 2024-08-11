@@ -4,11 +4,12 @@ import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
 import { useState } from "react";
 
-function AddPurchasesForm({ getPurchases }) {
+function AddPurchasesForm({ getPurchases, production_id }) {
   // Initialize useState with an empty purchases obj
   const EmptyForm = {
+    production_id,
     vender: "",
-    date: "",
+    date: "1993-12-05",
     order_num: 0,
     description: "",
     payment_type: "",
@@ -17,11 +18,25 @@ function AddPurchasesForm({ getPurchases }) {
     reimb_submitted: false,
     reimb_received: false,
   };
-
+  // Make sure you are sending the date format SQL is expecting YYYMMDD
+  //Send the request, console log what you send, look at the error in the backend terminal
   // Create a piece of state to change the purchase data
   const [purchase, setPurchase] = useState(EmptyForm);
-
+  /// Destructure the purchase object
+  const {
+    id,
+    vender,
+    date,
+    order_num,
+    description,
+    payment_type,
+    items,
+    total,
+    reimb_submitted,
+    reimb_received,
+  } = purchase;
   const handleAddPurchase = async () => {
+    console.log("hello");
     try {
       let response = await fetch("/api/purchases", {
         method: "POST",
@@ -32,7 +47,7 @@ function AddPurchasesForm({ getPurchases }) {
       });
 
       if (response.ok) {
-        //call getPurchases
+        getPurchases();
       } else {
         alert(`Server error: ${response.status} ${response.statusText}`);
       }
@@ -44,7 +59,7 @@ function AddPurchasesForm({ getPurchases }) {
   // You'll need a handleChange
   const handleInputChange = (e) => {
     let { name, value } = e.target;
-    setProduction((state) => ({
+    setPurchase((state) => ({
       ...state,
       [name]: value,
     }));
@@ -52,10 +67,10 @@ function AddPurchasesForm({ getPurchases }) {
 
   // You'll need a handleSubmit
   const handleSubmit = (e) => {
+    console.log("banana");
     e.preventDefault();
-    // pass data back up to the parent
-    handleAddPurchase(purchase);
-    setProduction((purchase) => EmptyForm);
+    handleAddPurchase();
+    setPurchase((purchase) => EmptyForm);
   };
 
   return (
@@ -66,6 +81,7 @@ function AddPurchasesForm({ getPurchases }) {
           <Col xs={7}>
             <Form.Control
               name="vender"
+              value={vender}
               onChange={(e) => handleInputChange(e)}
               placeholder="Vendor"
             />
@@ -73,6 +89,7 @@ function AddPurchasesForm({ getPurchases }) {
           <Col>
             <Form.Control
               name="date"
+              value={date}
               onChange={(e) => handleInputChange(e)}
               placeholder="Date"
             />
@@ -80,6 +97,7 @@ function AddPurchasesForm({ getPurchases }) {
           <Col>
             <Form.Control
               name="order_num"
+              value={order_num}
               onChange={(e) => handleInputChange(e)}
               placeholder="Order #"
             />
@@ -89,6 +107,7 @@ function AddPurchasesForm({ getPurchases }) {
           <Col>
             <Form.Control
               name="description"
+              value={description}
               onChange={(e) => handleInputChange(e)}
               placeholder="Description (optional)"
             />
@@ -98,6 +117,7 @@ function AddPurchasesForm({ getPurchases }) {
           <Col xs={7}>
             <Form.Control
               name="payment_type"
+              value={payment_type}
               onChange={(e) => handleInputChange(e)}
               placeholder="Payment Type"
             />
@@ -105,6 +125,7 @@ function AddPurchasesForm({ getPurchases }) {
           <Col>
             <Form.Control
               name="items"
+              value={items}
               onChange={(e) => handleInputChange(e)}
               placeholder="# Items"
             />
@@ -112,6 +133,7 @@ function AddPurchasesForm({ getPurchases }) {
           <Col>
             <Form.Control
               name="total"
+              value={total}
               onChange={(e) => handleInputChange(e)}
               placeholder="Total ($)"
             />
@@ -121,6 +143,7 @@ function AddPurchasesForm({ getPurchases }) {
           <Col xs={2}>
             <Form.Check
               name="reimb_submitted"
+              value={reimb_submitted}
               onChange={(e) => handleInputChange(e)}
               type="checkbox"
               id={`default-checkbox reimb_submitted `}
@@ -130,6 +153,7 @@ function AddPurchasesForm({ getPurchases }) {
           <Col xs={2}>
             <Form.Check
               name="reimb_received"
+              value={reimb_received}
               onChange={(e) => handleInputChange(e)}
               type="checkbox"
               id={`default-checkbox reimb_received`}
@@ -138,7 +162,9 @@ function AddPurchasesForm({ getPurchases }) {
           </Col>
         </Row>
         <Row>
-          <Button variant="info">Submit</Button>
+          <Button type="submit" variant="info">
+            Submit
+          </Button>
         </Row>
       </Form>
     </div>

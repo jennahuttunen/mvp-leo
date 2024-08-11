@@ -1,6 +1,7 @@
 var express = require("express");
 var router = express.Router();
-const db = require("../model/helper"); // Is this???
+const db = require("../model/helper");
+const { DateTime } = require("luxon"); // Does this go here???
 
 /* GET home page. */
 router.get("/", function (req, res, next) {
@@ -33,6 +34,7 @@ router.get("/purchases/production/:production_id", async function (req, res) {
   let defaultQuery = `SELECT
     productions.title,
     productions.budget,
+    purchases.id
     purchases.date,
     purchases.order_num,
     purchases.vender,
@@ -121,6 +123,7 @@ router.put("/purchases/:id", async function (req, res) {
 // POST a new purchase (similar to put) route handler
 router.post("/purchases", async function (req, res) {
   // Create a new purchase obj with req.body
+  console.log(req.body);
   let {
     production_id,
     date,

@@ -1,5 +1,4 @@
 import Table from "react-bootstrap/Table";
-import Button from "react-bootstrap/Button";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import Form from "react-bootstrap/Form";
@@ -9,6 +8,7 @@ const PurchasesTable = ({ purchases }) => {
   return (
     <div id="purchases-table">
       <h2>Purchases</h2>
+
       <div id="filter-button">
         <InputGroup className="mb-3">
           <DropdownButton
@@ -19,7 +19,8 @@ const PurchasesTable = ({ purchases }) => {
             <Dropdown.Item href="#">Payment</Dropdown.Item>
             <Dropdown.Item href="#">Vendor</Dropdown.Item>
             <Dropdown.Item href="#">Date</Dropdown.Item>
-            <Dropdown.Item href="#">Reimbursement (?)</Dropdown.Item>
+            <Dropdown.Item href="#">Submitted</Dropdown.Item>
+            <Dropdown.Item href="#">Received</Dropdown.Item>
           </DropdownButton>
           <Form.Control
             name="filter-by"
@@ -32,16 +33,19 @@ const PurchasesTable = ({ purchases }) => {
           <tr>
             <th>Payment</th>
             <th>Date</th>
-            <th>Order #</th>
+            <th>Order</th>
             <th>Vendor</th>
-            <th># Items</th>
+            <th>Items</th>
             <th>Description</th>
             <th>Total Cost</th>
+            <th>Submitted</th>
+            <th>Received</th>
           </tr>
         </thead>
         <tbody>
           {purchases.map((pur) => {
             const {
+              id,
               vender,
               date,
               order_num,
@@ -53,7 +57,7 @@ const PurchasesTable = ({ purchases }) => {
               reimb_received,
             } = pur;
             return (
-              <tr>
+              <tr key={id}>
                 <td>{payment_type}</td>
                 <td>{date}</td>
                 <td>{order_num}</td>
@@ -61,12 +65,14 @@ const PurchasesTable = ({ purchases }) => {
                 <td>{items}</td>
                 <td>{description}</td>
                 <td>{total}</td>
+                <td>{reimb_submitted}</td>
+                <td>{reimb_received}</td>
               </tr>
             );
           })}
         </tbody>
       </Table>
-      <button>Generate Labels</button>
+      <button onClick={() => alert("coming soon!")}>Generate Labels</button>
     </div>
   );
 };

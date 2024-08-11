@@ -1,7 +1,7 @@
-import "./Homepage.css";
 import ProductionGrid from "./ProductionGrid";
 import AddProduction from "./AddProduction";
 import GlobalNavbar from "./GlobalNavbar";
+import Hero from "./Hero";
 import { useState, useEffect } from "react";
 
 const Homepage = () => {
@@ -29,13 +29,12 @@ const Homepage = () => {
 
   useEffect(() => {
     getProductions();
-  }, []); // How do I make the useEffect refetch every time a production is added?
+  }, []);
 
   return (
     <div id="homepage" className="container-fluid">
       <GlobalNavbar links={links} />
-      <h1>Expense Tracker</h1>
-      <h1>Home Page</h1>
+      <Hero />
       <ProductionGrid productions={productions} />
       <AddProduction getProductions={getProductions} />
     </div>

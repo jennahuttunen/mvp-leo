@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import "./ProductionGrid.css";
 import Card from "react-bootstrap/Card";
+import { Link } from "react-router-dom";
 
 const ProductionGrid = ({ productions }) => {
   return (
@@ -15,12 +15,13 @@ const ProductionGrid = ({ productions }) => {
               style={{ width: "18rem", padding: "10px", margin: "10px" }}
             >
               <Card.Body>
+                <button>X</button>
                 <Card.Title>{title}</Card.Title>
                 <Card.Subtitle className="mb-2 text-muted">
                   ${budget}
                 </Card.Subtitle>
                 <Card.Text>{description}</Card.Text>
-                <Card.Link href="#">View Purchases</Card.Link>
+                <Link to={`/purchases/${id}`}>View Purchases</Link>
               </Card.Body>
             </Card>
           );

@@ -45,7 +45,6 @@ const AddProduction = ({ getProductions }) => {
   // You'll need a handleSubmit
   const handleSubmit = (e) => {
     e.preventDefault();
-    // pass data back up to the parent
     handleAddProduction(production);
     setProduction((production) => EmptyForm);
   };
@@ -53,7 +52,7 @@ const AddProduction = ({ getProductions }) => {
   return (
     <div id="add-production">
       <h2>Add Production</h2>
-      <form onSubmit={handleSubmit}>
+      <form className="add-production" onSubmit={handleSubmit}>
         <InputGroup className="mb-3">
           <InputGroup.Text id="inputGroup-sizing-default">
             Title
@@ -92,7 +91,6 @@ const AddProduction = ({ getProductions }) => {
             required
           />
         </InputGroup>
-
         <button>Submit</button>
       </form>
     </div>
