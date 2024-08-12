@@ -157,3 +157,25 @@ h2:after {
   max-width: 750px;
   margin: 0 auto;
 }
+
+.delete-prod {
+  display: flex;
+  margin-left: -1.5em;
+  margin-top: -1.5em;
+  border-radius: 0%;
+}
+
+.delete-prod-btn {
+  font-size: 12px;
+  padding: 2px 8px;
+  border-radius: 50%;
+  background-color: lightgrey;
+}
+
+.delete-prod-btn:hover {
+  font-size: 12px;
+  padding: 2px 8px;
+  border-radius: 50%;
+
+  background-color: black;
+}

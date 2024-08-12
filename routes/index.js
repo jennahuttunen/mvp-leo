@@ -216,4 +216,24 @@ router.delete("/purchases/:id", async function (req, res) {
   }
 });
 
+// DELETE a production by id
+router.delete("/productions/:id", async function (req, res) {
+  let prodId = Number(req.params.id);
+
+  try {
+    let result = await db(`SELECT * FROM productions WHERE id = ${prodId}`);
+
+    if (result.data.length === 1) {
+      await db(`DELETE FROM productions WHERE id = ${prodId}`);
+      result = await db("SELECT * FROM productions");
+      res.send(result.data);
+    } else {
+      // production doesn't exist
+      res.status(404).send({ error: "Production not found" });
+    }
+  } catch (err) {
+    res.status(500).send({ error: err.message });
+  }
+});
+
 module.exports = router;

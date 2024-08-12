@@ -15,7 +15,9 @@ const ProductionGrid = ({ productions }) => {
               style={{ width: "18rem", padding: "10px", margin: "10px" }}
             >
               <Card.Body>
-                <button>X</button>
+                <div className="delete-prod">
+                  <button className="delete-prod-btn">x</button>
+                </div>
                 <Card.Title>{title}</Card.Title>
                 <Card.Subtitle className="mb-2 text-muted">
                   ${budget}
