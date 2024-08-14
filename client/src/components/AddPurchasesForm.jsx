@@ -9,12 +9,12 @@ function AddPurchasesForm({ getPurchases, production_id }) {
   const EmptyForm = {
     production_id,
     vender: "",
-    date: "1993-12-05",
-    order_num: 0,
+    date: "",
+    order_num: null,
     description: "",
     payment_type: "",
-    items: 0,
-    total: 0,
+    items: null,
+    total: null,
     reimb_submitted: false,
     reimb_received: false,
   };
@@ -77,7 +77,7 @@ function AddPurchasesForm({ getPurchases, production_id }) {
     <div id="add-purchase">
       <h2>Add Purchase</h2>
       <Form onSubmit={handleSubmit}>
-        <Row>
+        <Row className="add-purchase-row">
           <Col xs={7}>
             <Form.Control
               name="vender"
@@ -88,11 +88,12 @@ function AddPurchasesForm({ getPurchases, production_id }) {
           </Col>
           <Col>
             <Form.Control
+              type="date"
               name="date"
               value={date}
               onChange={(e) => handleInputChange(e)}
               placeholder="Date"
-            />
+            ></Form.Control>
           </Col>
           <Col>
             <Form.Control
@@ -103,7 +104,7 @@ function AddPurchasesForm({ getPurchases, production_id }) {
             />
           </Col>
         </Row>
-        <Row>
+        <Row className="add-purchase-row">
           <Col>
             <Form.Control
               name="description"
@@ -113,7 +114,7 @@ function AddPurchasesForm({ getPurchases, production_id }) {
             />
           </Col>
         </Row>
-        <Row>
+        <Row className="add-purchase-row">
           <Col xs={7}>
             <Form.Control
               name="payment_type"
@@ -161,8 +162,12 @@ function AddPurchasesForm({ getPurchases, production_id }) {
             />
           </Col>
         </Row>
-        <Row>
-          <Button type="submit" variant="info">
+        <Row className="submit-purchase-button-row">
+          <Button
+            className="submit-purchase-button"
+            type="submit"
+            variant="info"
+          >
             Submit
           </Button>
         </Row>

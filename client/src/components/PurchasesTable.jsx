@@ -56,10 +56,14 @@ const PurchasesTable = ({ purchases }) => {
               reimb_submitted,
               reimb_received,
             } = pur;
+
+            console.log(date.slice(0, -14));
+            // You can use JS in the curly braces including variables destructured out of objects
+
             return (
               <tr key={id}>
                 <td>{payment_type}</td>
-                <td>{date}</td>
+                <td>{date.slice(0, -14)}</td>
                 <td>{order_num}</td>
                 <td>{vender}</td>
                 <td>{items}</td>

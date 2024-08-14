@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import Card from "react-bootstrap/Card";
 import { Link } from "react-router-dom";
 
-const ProductionGrid = ({ productions }) => {
+const ProductionGrid = ({ productions, deleteProduction }) => {
   return (
     <section id="production-grid">
       <h2>Productions</h2>
@@ -16,7 +16,12 @@ const ProductionGrid = ({ productions }) => {
             >
               <Card.Body>
                 <div className="delete-prod">
-                  <button className="delete-prod-btn">x</button>
+                  <button
+                    onClick={(e) => deleteProduction(id)}
+                    className="delete-prod-btn"
+                  >
+                    x
+                  </button>
                 </div>
                 <Card.Title>{title}</Card.Title>
                 <Card.Subtitle className="mb-2 text-muted">

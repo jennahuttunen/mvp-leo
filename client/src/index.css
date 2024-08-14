@@ -85,12 +85,14 @@ HERO CSS
 }
 .hero-title h1 {
   margin-bottom: 2rem;
+  padding-top: 30px;
   font-weight: 700;
 }
 .hero-title p {
   font-size: 16px;
   line-height: 1.75;
   max-width: 35em;
+  margin-bottom: 0px;
 }
 
 .hero-center {
@@ -178,4 +180,52 @@ h2:after {
   border-radius: 50%;
 
   background-color: black;
+}
+
+/* 
+============= 
+PURCHASES PAGE CSS
+=============
+*/
+
+.purchases-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Segoe UI", "Helvetica Neue", "Noto Sans", "Liberation Sans",
+    Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+    "Noto Color Emoji";
+  font-weight: bold;
+  min-height: 40vh;
+  margin: 0 auto;
+  margin-top: -60px;
+  background: #f9d234;
+  display: flex;
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+#add-purchase {
+  margin-top: 125px;
+  margin-bottom: 125px;
+  padding-bottom: 125px;
+  border-bottom: 7px solid #f9d234;
+}
+.add-purchase-row {
+  padding-bottom: 20px;
+}
+.submit-purchase-button-row {
+  justify-content: center;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+.submit-purchase-button {
+  padding: 10px;
+  width: 100px;
 }

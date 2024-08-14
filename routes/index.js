@@ -1,7 +1,6 @@
 var express = require("express");
 var router = express.Router();
 const db = require("../model/helper");
-const { DateTime } = require("luxon"); // Does this go here???
 
 /* GET home page. */
 router.get("/", function (req, res, next) {
@@ -17,9 +16,30 @@ router.get("/productions", function (req, res) {
     .catch((err) => res.status(500).send(err));
 });
 
+//Get production title by id
+router.get("/productions/:id", function (req, res) {
+  db(`SELECT * FROM productions WHERE id = ${req.params.id};`)
+    .then((results) => {
+      res.send(results.data);
+    })
+    .catch((err) => res.status(500).send(err));
+});
+
 // Get all purchases
-router.get("/purchases", function (req, res) {
+router.get("/purchases/", function (req, res) {
   db("SELECT * FROM purchases;")
+    .then((results) => {
+      res.send(results.data);
+    })
+    .catch((err) => res.status(500).send(err));
+});
+
+// Get all purchases by production id
+// Think about writing a guard function that will a) check if the production_id exists and b) if any purchases exist for it yet
+router.get("/purchases/:production_id", function (req, res) {
+  db(
+    `SELECT * FROM purchases WHERE production_id = ${req.params.production_id};`
+  )
     .then((results) => {
       res.send(results.data);
     })
@@ -137,6 +157,7 @@ router.post("/purchases", async function (req, res) {
     reimb_received,
   } = req.body;
   // Note: MySQL automatically generates an ID
+  // DATES SHOULD BE READ AS STRINGS (Quotation marks!!!!)
   try {
     let sql = `
     INSERT INTO purchases (
@@ -152,7 +173,7 @@ router.post("/purchases", async function (req, res) {
       reimb_received)
     VALUES (
       ${production_id},
-      ${date},
+      '${date}',
       ${order_num},
       '${vender}',
       ${items},

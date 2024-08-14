@@ -14,7 +14,6 @@ const Homepage = () => {
   const [productions, setProductions] = useState([]);
   // Productions is the array fetched from the db which will replace []
   /// Every 500 means a server side error - first check the terminal running the backend
-  // Broken??? "res is not defined", "status is not defined"
   const getProductions = () => {
     fetch("/api/productions")
       .then((res) => res.json()) // Wait to see if the server can satisfy request
@@ -27,6 +26,25 @@ const Homepage = () => {
       });
   };
 
+  const deleteProduction = async (id) => {
+    let options = {
+      method: "DELETE",
+    };
+    try {
+      let response = await fetch(`/api/productions/${id}`, options);
+      if (response.ok) {
+        let data = await response.json();
+        setProductions(data);
+      } else {
+        console.log(`Server error: ${response.status} ${response.statusText}`);
+      }
+    } catch (err) {
+      console.log(`Network error: ${err.message}`);
+    }
+  };
+
+  console.log(productions);
+
   useEffect(() => {
     getProductions();
   }, []);
@@ -35,7 +53,10 @@ const Homepage = () => {
     <div id="homepage" className="container-fluid">
       <GlobalNavbar links={links} />
       <Hero />
-      <ProductionGrid productions={productions} />
+      <ProductionGrid
+        productions={productions}
+        deleteProduction={(id) => deleteProduction(id)}
+      />
       <AddProduction getProductions={getProductions} />
     </div>
   );
