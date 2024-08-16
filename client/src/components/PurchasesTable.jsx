@@ -3,8 +3,13 @@ import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
+import { useState } from "react";
+import { FormControl } from "react-bootstrap";
 
-const PurchasesTable = ({ purchases }) => {
+const PurchasesTable = ({ purchases, deletePurchase }) => {
+  //const filters = ["Filter by", "Payment", "Vendor", "Date", "Submitted", "Received"]
+  const [filterBy, setFilterBy] = useState("Filter by");
+
   return (
     <div id="purchases-table">
       <h2>Purchases</h2>
@@ -13,16 +18,17 @@ const PurchasesTable = ({ purchases }) => {
         <InputGroup className="mb-3">
           <DropdownButton
             variant="outline-secondary"
-            title="Filter By"
+            title={filterBy}
             id="input-group-dropdown-1"
+            onChange={(e) => setFilterBy(e.target.value)}
+            defaultValue={filterBy}
           >
-            <Dropdown.Item href="#">Payment</Dropdown.Item>
             <Dropdown.Item href="#">Vendor</Dropdown.Item>
             <Dropdown.Item href="#">Date</Dropdown.Item>
             <Dropdown.Item href="#">Submitted</Dropdown.Item>
             <Dropdown.Item href="#">Received</Dropdown.Item>
           </DropdownButton>
-          <Form.Control
+          <FormControl
             name="filter-by"
             aria-label="Text input with dropdown button"
           />
@@ -68,9 +74,17 @@ const PurchasesTable = ({ purchases }) => {
                 <td>{vender}</td>
                 <td>{items}</td>
                 <td>{description}</td>
-                <td>{total}</td>
+                <td>${total}</td>
                 <td>{reimb_submitted}</td>
                 <td>{reimb_received}</td>
+                <td>
+                  <button
+                    onClick={() => deletePurchase(id)}
+                    className="delete-purchase-btn"
+                  >
+                    x
+                  </button>
+                </td>
               </tr>
             );
           })}

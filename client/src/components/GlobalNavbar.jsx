@@ -1,6 +1,7 @@
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
+import { FaBoltLightning } from "react-icons/fa6";
 
 const GlobalNavbar = ({ links }) => {
   return (
@@ -8,7 +9,9 @@ const GlobalNavbar = ({ links }) => {
       <Navbar bg="light" data-bs-theme="light" className="fixed-top">
         <Container>
           {/* Add Home link to Navbar.Brand */}
-          <Navbar.Brand href="/">BOLT</Navbar.Brand>
+          <Navbar.Brand href="/">
+            <FaBoltLightning className="logo" /> BOLT
+          </Navbar.Brand>
           <Nav className="me-auto">
             {links.map((link) => (
               <Nav.Link

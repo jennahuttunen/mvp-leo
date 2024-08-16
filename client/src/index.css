@@ -61,6 +61,12 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+.logo {
+  max-height: 25px;
+  color: #f9d234;
+}
+
 /* 
 ============= 
 HERO CSS
@@ -214,6 +220,13 @@ PURCHASES PAGE CSS
 .add-purchase-row {
   padding-bottom: 20px;
 }
+
+/* This stops the checkboxes from overlapping on small screen */
+.col-2 {
+  min-width: 110px;
+  max-width: 120px;
+}
+
 .submit-purchase-button-row {
   justify-content: center;
   border-radius: 8px;
@@ -228,4 +241,44 @@ PURCHASES PAGE CSS
 .submit-purchase-button {
   padding: 10px;
   width: 100px;
+  font-weight: 600;
+}
+
+.delete-purchase-btn {
+  font-size: 12px;
+  padding: 2px 8px;
+  border-radius: 50%;
+  background-color: lightgrey;
+}
+
+.delete-purchase-btn:hover {
+  font-size: 12px;
+  padding: 2px 8px;
+  border-radius: 50%;
+
+  background-color: crimson;
+}
+
+/* 
+============= 
+FOOTER CSS
+=============
+*/
+.footer {
+  display: flex;
+  justify-content: center;
+  gap: 4;
+  margin-top: 4em;
+  padding-top: 2em;
+  border-top: 1px solid slategray;
+}
+#social-icon {
+  height: auto;
+  width: 2em;
+  margin: 0 25px;
+  color: slategray;
+}
+
+#social-icon :hover {
+  color: black;
 }

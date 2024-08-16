@@ -2,6 +2,7 @@ import ProductionGrid from "./ProductionGrid";
 import AddProduction from "./AddProduction";
 import GlobalNavbar from "./GlobalNavbar";
 import Hero from "./Hero";
+import Footer from "./Footer";
 import { useState, useEffect } from "react";
 
 const Homepage = () => {
@@ -43,8 +44,6 @@ const Homepage = () => {
     }
   };
 
-  console.log(productions);
-
   useEffect(() => {
     getProductions();
   }, []);
@@ -58,6 +57,7 @@ const Homepage = () => {
         deleteProduction={(id) => deleteProduction(id)}
       />
       <AddProduction getProductions={getProductions} />
+      <Footer />
     </div>
   );
 };

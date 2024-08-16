@@ -2,6 +2,7 @@ import Navbar from "./GlobalNavbar";
 import PurchasesTable from "./PurchasesTable";
 import AddPurchasesForm from "./AddPurchasesForm";
 import PurchasesTitle from "./PurchasesTitle";
+import Footer from "./Footer";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
@@ -17,13 +18,7 @@ const Purchases = () => {
   // Links for the navbar
   const links = [
     { id: 1, label: "Add Purchase", path: "#add-purchase" },
-    { id: 2, label: "Purchases", path: "#purchases-table" },
-    {
-      id: 3,
-      label: "About Me",
-      path: "https://linkedin.com/in/leo-bonjo",
-      target: "_blank",
-    },
+    { id: 2, label: "Purchases Table", path: "#purchases-table" },
   ];
 
   const getProductions = () => {
@@ -50,6 +45,23 @@ const Purchases = () => {
       });
   };
 
+  const deletePurchase = async (id) => {
+    let options = {
+      method: "DELETE",
+    };
+    try {
+      let response = await fetch(`/api/purchases/${id}`, options);
+      if (response.ok) {
+        let data = await response.json();
+        setPurchases(data);
+      } else {
+        console.log(`Server error: ${response.status} ${response.statusText}`);
+      }
+    } catch (err) {
+      console.log(`Network error: ${err.message}`);
+    }
+  };
+
   useEffect(() => {
     getPurchases();
     getProductions();
@@ -58,13 +70,17 @@ const Purchases = () => {
   return (
     <div>
       <Navbar links={links} />
-      <h1 className="purchases-title">Show Title??</h1>
+      <h1 className="purchases-title">Title here???</h1>
       {/* <PurchasesTitle productions={productions} /> */}
       <AddPurchasesForm
         getPurchases={getPurchases}
         production_id={production_id}
       />
-      <PurchasesTable purchases={purchases} />
+      <PurchasesTable
+        deletePurchase={(id) => deletePurchase(id)}
+        purchases={purchases}
+      />
+      <Footer />
     </div>
   );
 };
