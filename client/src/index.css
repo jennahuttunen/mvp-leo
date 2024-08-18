@@ -259,6 +259,11 @@ PURCHASES PAGE CSS
   background-color: crimson;
 }
 
+.generate-labels-btn {
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
 /* 
 ============= 
 FOOTER CSS

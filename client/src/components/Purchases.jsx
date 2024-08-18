@@ -44,7 +44,9 @@ const Purchases = () => {
         console.log(error);
       });
   };
-
+  // req query is when there are key-value pairs added to the end
+  // of your url endpoint whereas
+  // req param is when variables arer added to the end of your url
   const deletePurchase = async (id) => {
     let options = {
       method: "DELETE",
@@ -52,8 +54,10 @@ const Purchases = () => {
     try {
       let response = await fetch(`/api/purchases/${id}`, options);
       if (response.ok) {
-        let data = await response.json();
-        setPurchases(data);
+        // setPurchases(data) would set the state to ALL data;
+        // getPurchases uses the GET route that only returns
+        // The purchases related to the production id
+        getPurchases();
       } else {
         console.log(`Server error: ${response.status} ${response.statusText}`);
       }
@@ -70,8 +74,7 @@ const Purchases = () => {
   return (
     <div>
       <Navbar links={links} />
-      <h1 className="purchases-title">Title here???</h1>
-      {/* <PurchasesTitle productions={productions} /> */}
+      <PurchasesTitle productions={productions} />
       <AddPurchasesForm
         getPurchases={getPurchases}
         production_id={production_id}

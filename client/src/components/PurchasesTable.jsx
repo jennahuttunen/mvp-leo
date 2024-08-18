@@ -9,7 +9,9 @@ import { FormControl } from "react-bootstrap";
 const PurchasesTable = ({ purchases, deletePurchase }) => {
   //const filters = ["Filter by", "Payment", "Vendor", "Date", "Submitted", "Received"]
   const [filterBy, setFilterBy] = useState("Filter by");
-
+  const updateFilter = (e) => {
+    console.log("hello");
+  };
   return (
     <div id="purchases-table">
       <h2>Purchases</h2>
@@ -20,10 +22,16 @@ const PurchasesTable = ({ purchases, deletePurchase }) => {
             variant="outline-secondary"
             title={filterBy}
             id="input-group-dropdown-1"
-            onChange={(e) => setFilterBy(e.target.value)}
-            defaultValue={filterBy}
+            onChange={updateFilter}
+            // The onChange isn't working;
+            // Check the react bootstrap documentation
+            // to see where the onChange goes
+            // how to detect changes with a react bootstrap button
+            value={filterBy}
           >
-            <Dropdown.Item href="#">Vendor</Dropdown.Item>
+            <Dropdown.Item value="vendor" href="#">
+              Vendor
+            </Dropdown.Item>
             <Dropdown.Item href="#">Date</Dropdown.Item>
             <Dropdown.Item href="#">Submitted</Dropdown.Item>
             <Dropdown.Item href="#">Received</Dropdown.Item>
@@ -90,7 +98,12 @@ const PurchasesTable = ({ purchases, deletePurchase }) => {
           })}
         </tbody>
       </Table>
-      <button onClick={() => alert("coming soon!")}>Generate Labels</button>
+      <button
+        className="generate-labels-btn"
+        onClick={() => alert("coming soon!")}
+      >
+        Generate Labels
+      </button>
     </div>
   );
 };
