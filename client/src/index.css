@@ -1,5 +1,6 @@
 :root {
   width: 100vw;
+
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
@@ -13,12 +14,14 @@
 body {
   margin: 0;
   display: flex;
+  justify-content: center;
   place-items: center;
   min-height: 100vh;
   width: 100%;
 }
 
 #root {
+  overflow: scroll;
   width: 100vw;
   margin: 0 auto;
   padding: 2rem;
@@ -212,10 +215,12 @@ PURCHASES PAGE CSS
 }
 
 #add-purchase {
-  margin-top: 125px;
-  margin-bottom: 125px;
+  margin-top: 80px;
+  margin-bottom: 100px;
   padding-bottom: 125px;
+  padding-top: 75px;
   border-bottom: 7px solid #f9d234;
+  overflow-wrap: anywhere;
 }
 .add-purchase-row {
   padding-bottom: 20px;
@@ -223,8 +228,12 @@ PURCHASES PAGE CSS
 
 /* This stops the checkboxes from overlapping on small screen */
 .col-2 {
-  min-width: 110px;
-  max-width: 120px;
+  min-width: 140px;
+  max-width: 140px;
+}
+
+#filter-button {
+  margin-bottom: 50px;
 }
 
 .submit-purchase-button-row {
@@ -242,6 +251,27 @@ PURCHASES PAGE CSS
   padding: 10px;
   width: 100px;
   font-weight: 600;
+}
+
+#purchases-section {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.mb-3 {
+  max-width: 700px;
+  margin: auto;
+}
+/* THE TABLE CONTENT OVERFLOWS THE PAGE???? */
+#purchases-table {
+  max-width: 90vw;
+  min-width: 0;
+  margin: auto;
+  overflow: auto;
+  overflow-x: auto;
+}
+
+th td {
 }
 
 .delete-purchase-btn {
@@ -262,6 +292,15 @@ PURCHASES PAGE CSS
 .generate-labels-btn {
   margin-top: 25px;
   margin-bottom: 25px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
 }
 
 /* 

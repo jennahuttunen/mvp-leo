@@ -48,6 +48,7 @@ router.get("/purchases/:production_id", function (req, res) {
 
 // Use a query param to GET all purchases with the same
 //payment type, vender, date, reimb_submitted, or reimb_received values
+// NOT CURRENTLY IN USE
 router.get("/purchases/production/:production_id", async function (req, res) {
   //if the variable comes from the url/path it is stored in req.params
   const { production_id } = req.params;
@@ -100,6 +101,7 @@ router.get("/purchases/production/:production_id", async function (req, res) {
 });
 
 // PUT a modified show_id, date, vender, payment type, or purchase total
+// NOT CURRENTLY IN USE
 router.put("/purchases/:id", async function (req, res) {
   let purchaseId = req.params.id;
 

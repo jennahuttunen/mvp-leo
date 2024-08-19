@@ -12,7 +12,7 @@ const Purchases = () => {
   const [productions, setProductions] = useState([]);
 
   const { production_id } = useParams();
-  console.log(purchases[0]);
+
   // useParams returns an obj; use obj destructuring to access the name of the var we want to use
 
   // Links for the navbar

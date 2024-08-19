@@ -13,7 +13,7 @@ const PurchasesTable = ({ purchases, deletePurchase }) => {
     console.log("hello");
   };
   return (
-    <div id="purchases-table">
+    <div id="purchases-section">
       <h2>Purchases</h2>
 
       <div id="filter-button">
@@ -39,11 +39,12 @@ const PurchasesTable = ({ purchases, deletePurchase }) => {
           <FormControl
             name="filter-by"
             aria-label="Text input with dropdown button"
+            placeholder="**This Feature Coming Soon!**"
           />
         </InputGroup>
       </div>
-      <Table striped>
-        <thead>
+      <Table striped id="purchases-table">
+        <thead className="purchases-column">
           <tr>
             <th>Payment</th>
             <th>Date</th>

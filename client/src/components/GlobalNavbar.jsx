@@ -3,6 +3,8 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { FaBoltLightning } from "react-icons/fa6";
 
+// (It's called 'GlobalNavbar' because the Bootstrap component
+// Was already named 'Navbar' and React complained about it...)
 const GlobalNavbar = ({ links }) => {
   return (
     <div>
