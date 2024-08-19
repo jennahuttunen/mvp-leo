@@ -21,11 +21,18 @@ Since this is my first time building an app from scratch, you may find there are
    - Footer: Social media icon links for a professional look
 
 3. The way to access the Purchases page is by clicking one of the "See Purchases" links in a production card in the ProductionGrid. This may seem strange (like, why not link the Purchases page in the navbar?) but it's because each Purchases page is unique to the Production to which it's attached. The Purchases Page contains 5 components:
+
    - Navbar: You'll notice the links are different on this page
    - PurchasesTitle: Not interactive, simply displays the title prop of the 'productions' piece of state whose purchases the user is viewing
    - AddPurchasesForm: Where the user inputs important info from the receipt. May throw errors for fringe cases. For example, it will not accept apostrophes in the 'vendor' input field (e.g., the user has to write "Macys" instead of "Macy's"). Don't get me started on the 'date' field.
    - PurchasesTable: This table is unique to whatever Production you clicked in the grid on Homepage.jsx. It contains a table of all the purchases that have been made **for that show only**.
    - Footer: just some nice social media icons to look professional.
+
+   ## Some Additional Notes
+
+   I put all of the CSS into one single file, index.css, instead of making individual CSS files for each component.
+
+   Not all the routes in index.js are currently being used.
 
 <!-- Notes About Future Features -->
 
