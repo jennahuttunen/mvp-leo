@@ -54,3 +54,7 @@ receipt parsers:
 https://www.edenai.co/feature/ocr-receipt-parsing-apis?referral=top-free-receipt-parser-apis-and-open-source-models
 https://github.com/ReceiptManager/receipt-parser-legacy
 https://github.com/bhimrazy/receipt-ocr
+
+## Added Features
+
+My contributions to Leo's MVP included refining the front-end with Bootstrap and CSS, adding PDF generation with jspdf and integrating a bar chart using Recharts. I also added sortable features and modal warnings for improved data management and user experience.
