@@ -5,7 +5,6 @@ import Button from "react-bootstrap/Button";
 import { useState } from "react";
 
 function AddPurchasesForm({ getPurchases, production_id }) {
-  // Initialize useState with an empty purchases obj
   const EmptyForm = {
     production_id,
     vender: "",
@@ -18,11 +17,8 @@ function AddPurchasesForm({ getPurchases, production_id }) {
     reimb_submitted: false,
     reimb_received: false,
   };
-  // Make sure you are sending the date format SQL is expecting YYYMMDD
-  //Send the request, console log what you send, look at the error in the backend terminal
-  // Create a piece of state to change the purchase data
+
   const [purchase, setPurchase] = useState(EmptyForm);
-  /// Destructure the purchase object
   const {
     id,
     vender,
@@ -166,7 +162,7 @@ function AddPurchasesForm({ getPurchases, production_id }) {
           <Button
             className="submit-purchase-button"
             type="submit"
-            variant="info"
+            variant="warning"
           >
             Submit
           </Button>
